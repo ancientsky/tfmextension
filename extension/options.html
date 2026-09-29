@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>TimesFM 趨勢預測 設定</title>
+<style>
+  body { font: 14px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", sans-serif; margin: 16px; width: 380px; color: #1e293b; }
+  h1 { font-size: 16px; margin: 0 0 12px; display: flex; justify-content: space-between; align-items: center; }
+  label { display: block; margin: 10px 0 4px; font-weight: 600; }
+  input[type=text], input[type=password], input[type=number], select { width: 100%; box-sizing: border-box; padding: 6px 8px; border: 1px solid #cbd5e1; border-radius: 4px; background: #fff; }
+  .row { display: flex; gap: 8px; align-items: center; margin-top: 14px; }
+  button { padding: 6px 12px; border-radius: 4px; border: 1px solid #14723e; background: #14723e; color: #fff; cursor: pointer; }
+  button.secondary { background: #fff; color: #14723e; }
+  #status { font-size: 12px; color: #475569; margin-top: 8px; min-height: 1.5em; }
+  #status.ok { color: #15803d; } #status.error { color: #b91c1c; }
+  small { color: #64748b; }
+</style>
+</head>
+<body>
+<h1><span data-i18n="title">TimesFM 趨勢預測</span></h1>
+
+<label for="lang" data-i18n="lang">介面語言</label>
+<select id="lang">
+  <option value="auto" data-i18n="langAuto">自動（跟隨網頁語言）</option>
+  <option value="zh">中文</option>
+  <option value="en">English</option>
+</select>
+<small data-i18n="langHint">NIDSS 英文版（網址含 /en/）會自動使用英文</small>
+
+<label for="apiUrl" data-i18n="apiUrl">API 網址</label>
+<input type="text" id="apiUrl" placeholder="http://localhost:7860">
+<small data-i18n="apiUrlHint">本機：<code>http://localhost:7860</code>；Hugging Face Space：<code>https://&lt;user&gt;-&lt;space&gt;.hf.space</code></small>
+
+<label for="apiKey" data-i18n="apiKey">API Key（選填）</label>
+<input type="password" id="apiKey">
+
+<label for="horizon" data-i18n="horizon">預測期數（horizon）</label>
+<input type="number" id="horizon" min="1" max="64" step="1">
+<small data-i18n="horizonHint">週資料建議 4 ~ 12</small>
+
+<label for="ignoreLast" data-i18n="ignoreLast">額外忽略最後 N 個觀測點</label>
+<input type="number" id="ignoreLast" min="0" max="10" step="1">
+<small data-i18n="ignoreLastHint">未滿週與未來預填區段會自動排除；這裡可再多略過幾期</small>
+
+<label><input type="checkbox" id="showBand"> <span data-i18n="showBand">顯示 10% / 90% 分位數線</span></label>
+
+<div class="row">
+  <button id="save" data-i18n="save">儲存</button>
+  <button id="test" class="secondary" data-i18n="test">測試連線</button>
+</div>
+<div id="status"></div>
+<script src="options.js"></script>
+</body>
+</html>

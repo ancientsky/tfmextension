@@ -1,0 +1,88 @@
+/* ---- toolbar: sits on the chart card's title row, right-aligned ---- */
+.tfm-toolbar {
+  position: absolute;
+  right: 12px;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 12px/1 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+}
+.tfm-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  padding: 0 11px 0 9px;
+  border-radius: 13px;
+  border: 1px solid transparent;
+  font: 600 12px/1 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+  white-space: nowrap;
+}
+.tfm-btn:active { transform: translateY(1px); }
+.tfm-btn .tfm-icon { display: inline-flex; }
+.tfm-run {
+  color: #fff;
+  /* NIDSS header green (#14723e) with its lighter tab green (#3f8e42) */
+  background: linear-gradient(135deg, #3f8e42, #14723e);
+  box-shadow: 0 1px 2px rgba(20, 114, 62, .35);
+}
+.tfm-run:hover { background: linear-gradient(135deg, #2f7f37, #0f5c31); box-shadow: 0 2px 6px rgba(20, 114, 62, .4); }
+.tfm-run:disabled { cursor: progress; opacity: .85; transform: none; }
+.tfm-revert {
+  color: #334155;
+  background: #fff;
+  border-color: #cbd5e1;
+}
+.tfm-revert:hover { background: #f1f5f9; border-color: #94a3b8; }
+.tfm-icon-only { width: 26px; padding: 0; justify-content: center; }
+.tfm-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* spinner replaces the icon while a forecast runs */
+.tfm-spinner { display: none; width: 12px; height: 12px; border: 2px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: tfm-spin .8s linear infinite; }
+.tfm-run.busy .tfm-spinner { display: inline-block; }
+.tfm-run.busy .tfm-icon { display: none; }
+@keyframes tfm-spin { to { transform: rotate(360deg); } }
+
+/* ---- inline error under the chart ---- */
+.tfm-error {
+  margin: 6px 8px 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #fef2f2;
+  color: #b91c1c;
+  font: 12px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+  text-align: left;
+}
+
+/* ---- summary panel under the chart ---- */
+.tfm-summary {
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 6px 8px 10px;
+  padding: 8px 10px;
+  border: 1px solid #d1e7d9;
+  border-left: 4px solid #14723e;
+  border-radius: 6px;
+  background: #f8fafc;
+  color: #1e293b;
+  font: 12px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+  text-align: left;
+  overflow: hidden;
+}
+.tfm-summary-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 8px; font-weight: 600; margin-bottom: 4px; }
+.tfm-summary-meta { font-weight: 400; color: #64748b; }
+.tfm-row { padding: 4px 0; border-top: 1px solid #e2e8f0; }
+.tfm-row-head { display: flex; align-items: center; gap: 8px; }
+.tfm-row-body { display: flex; flex-wrap: wrap; gap: 2px 14px; color: #334155; }
+.tfm-row-body i { font-style: normal; color: #64748b; margin-right: 4px; }
+.tfm-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; flex: none; }
+.tfm-badge { display: inline-block; padding: 0 6px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
+.tfm-badge.up { background: #fee2e2; color: #b91c1c; }
+.tfm-badge.down { background: #dcfce7; color: #15803d; }
+.tfm-badge.flat { background: #e2e8f0; color: #334155; }
+.tfm-link { border: 0; background: none; color: #14723e; cursor: pointer; padding: 2px 0; font-size: 12px; }
+.tfm-notes { margin-top: 4px; color: #b45309; display: flex; flex-wrap: wrap; gap: 2px 10px; }
+.tfm-disclaimer { margin-top: 2px; color: #94a3b8; font-size: 11px; }

@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "TimesFM 趨勢預測",
+  "version": "0.1.0",
+  "description": "用 Google TimesFM 3.0 對網頁上的 Highcharts 趨勢圖做零樣本預測，並把預測線直接疊在原圖上。",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["storage"],
+  "host_permissions": [
+    "http://localhost/*",
+    "http://127.0.0.1/*",
+    "https://*.hf.space/*"
+  ],
+  "optional_host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "action": {
+    "default_title": "TimesFM 趨勢預測設定",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://nidss.cdc.gov.tw/*"],
+      "js": ["lib/epiweek.js", "content/adapters/highcharts.js", "content/bridge.js"],
+      "world": "MAIN",
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://nidss.cdc.gov.tw/*"],
+      "js": ["content/ui.js"],
+      "css": ["content/ui.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
