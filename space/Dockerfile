@@ -9,7 +9,8 @@ ENV PYTHONUNBUFFERED=1 \
 WORKDIR /tmp/build
 COPY requirements.txt .
 # CPU-only torch keeps the image small; on a GPU host drop the extra index.
-RUN pip install --extra-index-url https://download.pytorch.org/whl/cpu torch \
+RUN pip install --upgrade "pip>=26.2.2" \
+ && pip install --extra-index-url https://download.pytorch.org/whl/cpu torch \
  && pip install -r requirements.txt
 
 # Spaces run the container as uid 1000.
